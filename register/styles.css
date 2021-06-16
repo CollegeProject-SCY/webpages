@@ -283,7 +283,7 @@ body {
     var(--twitter-color) 0%,
     var(--facebook-color) 100%
   );
-  transition: 1s ease-in-out;
+  transition: 2s ease-in-out;
   z-index: 6;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.904);
   border-bottom-right-radius: max(50vw, 50vh);

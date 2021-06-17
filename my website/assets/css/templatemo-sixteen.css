@@ -329,7 +329,7 @@ header .navbar {
 
 .banner-item-02 {
 	padding: 300px 0px;
-	background-image: url(../images/slide_02.jpeg);
+	background-image: url(my website/assets/images/slide_02.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -337,7 +337,7 @@ header .navbar {
 
 .banner-item-03 {
 	padding: 300px 0px;
-	background-image: url(https://github.com/CollegeProject-SCY/webpages/blob/main/my%20website/assets/images/busbanner2.jpg);
+	background-image: url();
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;

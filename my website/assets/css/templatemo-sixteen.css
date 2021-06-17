@@ -329,7 +329,7 @@ header .navbar {
 
 .banner-item-02 {
 	padding: 300px 0px;
-	background-image: url(my website/assets/images/slide_02.jpg);
+	background-image: url(../images/slide_02.jpg?raw=true);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;

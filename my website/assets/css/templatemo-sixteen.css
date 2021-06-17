@@ -1025,6 +1025,14 @@ footer .inner-content p a {
 	.navbar .navbar-brand {
 		width: auto;
 	}
+	.banner .text-content h6 {
+		font-size: 16px;
+		margin-bottom: 80px;
+	}
+	.banner .text-content h4 {
+		font-size: 22px;
+		margin-bottom: 40px;
+	}
 	.navbar:after {
 		display: none;
 	}

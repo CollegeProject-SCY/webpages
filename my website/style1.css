@@ -120,4 +120,8 @@
     width: 300px;
     object-fit: cover;
   }
+  .right-image img{
+    height: 250px;
+    width: 250px;
+  }
 }

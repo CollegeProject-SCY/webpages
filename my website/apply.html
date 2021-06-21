@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Form</title>
+    <link href="assets/css/form.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id ="form">
+            <h1><center>Apply Student Pass<br>(Degree/Professional/Technical/Medical)</center></h1>
+            <form>
+                <fieldset id="regform" style="width:900px;">
+                <legend>Applicant Details</legend>
+                <table >
+             <tr>
+                 <td><label>Admission Number : </label></td>
+               <td> <input type="number" name="adno"  required></td>
+
+                <td><label>Date of Birth :</label></td>
+                <td><input type="date"name="dob" required><br></td>
+                </tr>
+                <tr>
+                    <td><label>Student Name :</label> </td>
+                    <td><input type="text"name="name" required></td>
+                    <td><label>Gender :</label></td>
+                    <td><select name="gender">
+                        <option value="Null">select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select><br></td>
+                </tr>
+                <tr>
+                    <td><label> Father Name :</label></td>
+                    <td>  <input type="text"name="fname" required></td>
+                        <td><label> Mother Name :</label></td>
+                       <td> <input type="text"name="mname"  required><br> </td>
+                </tr>
+                <tr>
+                    <td><label>Caste:</label></td>
+                    <td> <select name="caste">
+                        <option value="Null">Select</option>
+                        <option value="General">GENERAL</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                    </select></td>
+                    <td>  <label> RD Number <br>(Mandatory for SC and ST Students) </label></td>
+                    <td><input type="number" name="adno"  required><br> </td>
+                 </tr>
+                 <tr>
+                     <td> <label>Institution Type :</label></td>
+                      <td> <select name="it">
+                            <option value="Null">Select</option>
+                            <option value="Degree">Degree</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Technical">Technical</option>
+                        </select><br></td>
+                 </tr>
+                 <tr>
+                     <td> <label> Institution Name :</label></td>
+                       <td> <input type="text"name="iname" required></td>
+                        <td><label> Institution Address :</label></td>
+                        <td> <input type="text" name="iaddress" required ><br> </td>
+                 </tr>
+                 <tr>
+                     <td><label> Student Address :</label></td>
+                       <td> <input type="text" name="saddress" required ></td>
+        
+                       <td> <label> Pin Code :</label></td>
+                        <td><input type="number"name="pno"  required><br></td>
+                 </tr>
+
+                 <tr>
+                     <td> <label>Course :</label></td>
+                        <td><select name="course">
+                            <option value="Null">Select</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BSC">BSC</option>
+                            <option value="B Com">B Com</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MSC">MSC</option>
+                            <option value="MBA">MBA</option>
+                            <option value="B pharma">B pharma</option>
+                            <option value="CAT">CAT</option>
+                            <option value="CEPT">CEPT</option>
+                            <option value="D Pharma">D Pharma</option>
+                            
+                        </select></td>
+                       <td> <label>Year :</label></td>&nbsp;&nbsp;&nbsp;
+                       <td> <select name="Year">
+                            <option value="Null">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            </select><br></td>
+
+                 </tr>
+                 <tr>
+                     <td> <label>Semester :</label></td>
+                        <td><select name="semester">
+                            <option value="Null">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            </select></td>
+                           <td> <label> Mobile No :</label></td>
+                        <td><input type="number"name="mno"  required><br> </td>
+                 </tr>
+                 <tr>
+                     <td><label> Email  id:</label></td>
+                     <td><input type="email" name="email"  required></td>
+                       <td> <label> Adhar Number :</label></td>
+                     <td> <input type="number"name="ano"  required><br>  </td>
+                 </tr>
+                 <tr>
+                   <td>  <label> Fee Amount :</label></td>
+                   <td> <input type="number" name="fno"  required><br> </td>  
+                 </tr>
+                </table>
+                </fieldset>
+               
+                   
+
+               
+                        <fieldset id="regform" style="width:900px;">
+                        <legend>Travel Route Details</legend>
+                        <table >
+                            <tr>
+                                <td><label> From Stop :</label></td>
+                                <td>  <input type="text"name="fstop" required></td>
+                                    <td><label> To Stop :</label></td>
+                                   <td> <input type="text"name="tstop"  required><br> </td>
+                            </tr>
+                            <tr>
+                                <td><label> Via 1 :</label></td>
+                                <td>  <input type="text"name="v1" ></td>
+                                    <td><label> Via 2:</label></td>
+                                   <td> <input type="text"name="v2" ><br> </td>
+                            </tr>
+                            
+                        </table>
+                    </fieldset>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="single-footer"></div>
+                    <a href="index.html" class="filled-button">Back</a>
+                    <a href="apply.html" class="filled-button">Reset</a>
+                    <a href="next.html"  class="filled-button">Next</a>
+                </div>
+                   
+
+
+                    </form>
+                
+            </body>
+            </html>
+                
+
+       

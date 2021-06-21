@@ -939,13 +939,13 @@ footer .inner-content p a {
 
 /* Responsive Style */
 @media (max-width: 768px) {
-	.banner . {
+	.banner .text-content{
 		width: 90%;
 		margin-left: 5%;
 	}
 	.banner .text-content h4 {
-		font-size: 22px;
-		margin-bottom: 40px;
+		font-size:4px;
+		margin-bottom: 500px;
 	}
 	.banner .text-content h6 {
 		font-size: 6px;
@@ -953,8 +953,9 @@ footer .inner-content p a {
 	}
 
 	.banner .text-content h2 {
-		font-size: 36px;
+		font-size: 8px;
 		letter-spacing: 0.5px;
+		margin-bottom: 40px;
 	}
 	.banner-item-01,
 	.banner-item-02,

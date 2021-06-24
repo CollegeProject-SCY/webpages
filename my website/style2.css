@@ -9,9 +9,9 @@ body{
 }
 
 .footer-area {
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 100px 0;
-  background: #2749c4;
+  background: #1a2e79;
   background: -moz-linear-gradient(left,  #2749c4 0%, #6085b2 100%);
   background: -webkit-linear-gradient(left,  #2749c4 0%,#6085b2 100%);
   background: linear-gradient(to right,  #2749c4 0%,#6085b2 100%);
@@ -20,7 +20,7 @@ body{
   position:relative;
 }
 .main {
-  width: 1200px;
+  width: 1110px;
   margin: 0 auto;
 }
 .footer {
@@ -28,6 +28,7 @@ body{
   justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: row;
+  
 }
 .single-footer {
   width: 230px;

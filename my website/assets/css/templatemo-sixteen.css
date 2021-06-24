@@ -1,10 +1,4 @@
-/*
 
-TemplateMo 546 Sixteen Clothing
-
-https://templatemo.com/tm-546-sixteen-clothing
-
-*/
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
@@ -87,19 +81,6 @@ a.filled-button:hover {
 	color: #1e1e1e;
 	margin-bottom: 15px;
 }
-
-.products-heading {
-	background-image: url(../images/products-heading.jpg);
-}
-
-.about-heading {
-	background-image: url(../images/about-heading.jpg);
-}
-
-.contact-heading {
-	background-image: url(../images/contact-heading.jpg);
-}
-
 .page-heading {
 	padding: 210px 0px 130px 0px;
 	text-align: center;
@@ -599,9 +580,11 @@ footer {
 }
 
 footer .inner-content {
-	border-top: 1px solid #eee;
-	margin-top: 60px;
-	padding: 60px 0px;
+	border-top: 1px solid rgb(240, 235, 235);
+	margin-top: 50px;
+	padding: 30px 0px;
+	border-bottom: 1px solid rgb(241, 236, 236); 
+	margin-bottom: 50px;
 }
 
 footer .inner-content p {

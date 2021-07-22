@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Route</title>
+</head>
+<style>
+body {
+	padding: 10px;
+	margin: 0;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: center;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.table{
+	position:center;
+	left: 50%;
+	top: 220%;
+	transform: translate(-50%, -50%);
+	border-collapse: collapse;
+	width: 1000px;
+	height: 600px;
+	border: 1px solid #bdc3c7;
+	box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Clearfix (clear floats) 
+.row::after {
+  content: "";
+  clear:left;
+  display: table;
+}*/
+
+ tr {
+	transition: all .2s ease-in;
+	cursor: pointer;
+}
+ th,
+td {
+	padding: 12px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+pre{
+   
+	text-align:center;
+	border-bottom: 1px solid #ddd;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#header {
+	background-color: #16a085;
+	color: #fff;
+}
+
+h1 {
+	font-weight: 600;
+	text-align: center;
+	background-color: #16a085;
+	color: #fff;
+	padding: 10px 0px;
+    width: 100%;
+}
+
+ tr:hover {
+	background-color: #f5f5f5;
+	transform: scale(1.02);
+	box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+p{
+	text-align:center;
+	border-bottom: 1px solid #ddd;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: large; 
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+	table {
+		width:50%;
+	}
+    .row{ 
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;       
+    }
+    .center{
+        position: center;
+    }
+    .hed{
+        width: 550px;
+        position: center;
+    }
+    p {
+        font-size: 15px;
+    }
+   
+    
+}
+</style>
+
+
+
+
+<body>
+    
+     
+    
+        <div class="hed">  
+           <h1>Bus Route View Table</h1>
+    <hr>
+    <p>All information regarding the origin and destination, bus arrival time and bus number has been updated on this page. <br>Students can view this page for all of this information and based on this information they can apply for a bus pass<br> if their original and destination location is available.</p>
+    </div>
+   
+    <table class="center">
+        <tr id="header">
+            <th>From place</th>
+            <th>To place</th>
+            <th>Timings</th>
+            <th>Bus Number</th>
+            
+        </tr>
+       <tr>
+            <td>Bhatkal </td>
+            <td>Kundapura </td>
+            <td> <pre>
+                     Morning :  6:40Am <br>
+                                     9.00Am<br>
+                     Afternoon: 12:10PM<br>
+                     Evening  : 3:10PM
+                     
+            </td>
+            
+            <td>KA-20.F.3456</td>
+             
+
+        </tr>
+        <tr>
+            <td>Kundapura</td>
+            <td>Bhatkal </td>
+            <td> <pre>
+                     Morning :  7:50Am <br>
+                                  
+                    Afternoon: 01:30PM<br>
+                    Evening  : 4:30PM
+                     
+            </td>
+            
+            <td>KA-20.F.3456</td>
+            
+
+        </tr>
+        <tr>
+            <td>Byndoor </td>
+            <td>Kundapura </td>
+            <td> <pre>
+                     Morning :  7:50Am <br>
+                                     9.20Am<br>
+                     Afternoon: 1:00PM<br>
+                     Evening  : 3:10PM
+                     
+            </td>
+            
+            <td>KA-20.F.3543</td>
+            
+
+        </tr>
+        <tr>
+            <td>Kundapura </td>
+            <td>Byndoor </td>
+            <td> <pre>
+                     Morning :  8:35Am <br>
+                                12AM
+                                     
+                     Afternoon:  1:50PM<br>
+                     Evening  :  4:20 PM
+                     
+            </td>
+            
+            <td>KA-20.F.3543</td>
+            
+
+        </tr>
+        <tr>
+            <td>Kundapura </td>
+            <td>Siddapura </td>
+            <td> <pre>
+                     Morning :  6:20Am <br>
+                                     8.10Am<br>
+                     Afternoon: 12:20PM<br>
+                     Evening  : 4:30PM
+                     
+            </td>
+            
+            <td>KA-20.F.7686</td>
+        </tr>
+        <tr>
+            <td>Siddapura </td>
+            <td>Kundapura </td>
+            <td> <pre>
+                     Morning :  7:20Am <br>
+                                     9.00Am<br>
+                     Afternoon: 1:10PM<br>
+                     Evening  : 5:30PM
+                     
+            </td>
+            
+            <td>KA-20.F.7686</td>
+        </tr>
+        <tr>
+            <td>Kundapura </td>
+            <td>Bhatkal </td>
+            <td> <pre>
+                     Morning :  6:40Am <br>
+                                     9.30Am<br>
+                     Afternoon: 1:40PM<br>
+                     Evening  : 5:10PM
+                     
+            </td>
+            
+            <td>KA-20.F.3486</td>
+             
+
+        </tr>
+        <tr>
+            <td>Bhatkal</td>
+            <td>Kundapura </td>
+            <td> <pre>
+                     Morning :  8:10Am <br>
+                                  
+                    Afternoon: 12:30PM<br>
+                    Evening  : 3:30PM
+                     
+            </td>
+            
+            <td>KA-20.F.3486</td>
+        </tr>
+    </tr>
+    <tr>
+        <td>Kundapura </td>
+        <td>Byndoor </td>
+        <td> <pre>
+                 Morning :  6:20Am <br>
+                                 8.25Am<br>
+                 Afternoon: 12:20Pm<br>
+                            2:00pm
+                 Evening  : 5:20PM
+                 
+        </td>
+        
+        <td>KA-20.F.7654</td>
+        
+
+    </tr>
+    <tr>
+        <td>Byndoor </td>
+        <td>Kundapura </td>
+        <td> <pre>
+                 Morning :  7:30Am <br>
+                            9:10pm
+                                 
+                 Afternoon:  1:10PM<br>
+                 Evening  :  4:00 PM
+                 
+        </td>
+        
+        <td>KA-20.F.7654</td>
+    </tr>
+    <tr>
+        <td>Siddapura</td>
+        <td>kundapura </td>
+        <td> <pre>
+                 Morning :  6:00Am <br>
+                                 8.30Am<br>
+                 Afternoon: 01:00PM<br>
+                 Evening  : 3:10PM<br>
+                            5:30pm
+                 
+        </td>
+        
+        <td>KA-20.F.6756</td>
+    </tr>
+    <tr>
+        <td>kundapura </td>
+        <td>Siddapura </td>
+        <td> <pre>
+                 Morning :  7:10Am <br>
+                               
+                 Afternoon: 12:00PM<br>
+                            01:55pm<br>
+                 Evening  : 4:20PM
+            </pre>
+        </td>
+        <td>KA-20.F.6756</td>
+    </tr>
+    </table>
+   
+    
+    
+    
+    <div class="hed">
+    <h1>Student Bus pass rate details</h1>
+    <hr>
+    <p>A bus pass is totally free for the students of SC/ST Professional & College Students, Technical/Medical Students .<br> Although you have to give the processing fee to the department in order to get a pass. <br>Rest of all the students. have to pay the amount as per the table below.</p>
+    </div>
+    
+    <table class="center">
+        <tr id="header">
+            
+            <th>Category</th>
+            <th>Pass Price</th>
+            <th>processing Fee</th>
+            <th>Total Amount</th>
+            
+        </tr>
+        <tr>
+          
+            <td>&nbsp;&nbsp;Professional & College Students Pass – (Diploma, ITI, Nursing, Degree, Master Degree etc)</td>
+            <td>960</td>
+            <td>200</td>
+            <td>1160</td>
+         </tr>
+         <tr>
+          
+            <td>SC/ST Professional & College Students Pass</td>
+            <td>Free</td>
+            <td>200</td>
+            <td>200</td>
+         </tr>
+         <tr>
+          
+            <td>Technical/Medical Students Pass</td>
+            <td>1400</td>
+            <td>200</td>
+            <td>1600</td>
+         </tr>
+        
+         <tr>
+          
+            <td>SC/ST Technical/Medical Students Pass</td>
+            <td>Free</td>
+            <td>200</td>
+            <td>200</td>
+         </tr>
+        
+    </table>
+    
+    <hr>
+    </body>
+</html>

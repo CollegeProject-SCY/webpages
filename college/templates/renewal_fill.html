@@ -346,7 +346,7 @@
 <div class="main-content">
 
 
-    <form class="form-basic" method="post" action="renewal_fun" onsubmit="return formValidation();">
+    <form class="form-basic" method="post" action="renewal_fun" enctype="multipart/form-data" onsubmit="return formValidation();">
         {% csrf_token %}
 
         <div class="form-row">
@@ -559,35 +559,35 @@
             <label>
                 <span>From Stop</span>
 
-                <input type="text" id="user" name="from_stop" required="required" size="30">
+                <input type="text" id="from" name="from_stop" required="required" size="30">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>To Stop</span>
 
-                <input type="text" id="user" name="to_stop" required="required" size="30">
+                <input type="text" id="to" name="to_stop" required="required" size="30">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>Study Certificate</span>
 
-                <input type="file" id="user" name="study" required="required" size="30">
+                <input type="file" id="study_certificate" name="study"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>Previous Year Marks Card</span>
 
-                <input type="file" id="user" name="markscard" required="required" size="30">
+                <input type="file" id="p_marks" name="previousYear"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>College Fees Reciept</span>
 
-                <input type="file" id="user" name="reciept" required="required" size="30">
+                <input type="file" id="college_receip" name="reciept"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
 

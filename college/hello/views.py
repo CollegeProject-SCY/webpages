@@ -153,18 +153,18 @@ def generate(request):
         today=date.today()
         obj=applicants.objects.get(pass_id=current).approval
         if obj:
-            
-            if(current == 0):
-                print(current)
-                messages.info(request, 'your are not applied') 
-                return redirect(home)
-            else:
-                if(today > expire_date):
-                    messages.info(request, 'Your pass is expired') 
+            #payment if loop
+                if(current == 0):
+                    print(current)
+                    messages.info(request, 'your are not applied') 
                     return redirect(home)
-
                 else:
-                    return render(request,'generate.html')
+                    if(today > expire_date):
+                        messages.info(request, 'Your pass is expired') 
+                        return redirect(home)
+
+                    else:
+                        return render(request,'generate.html')
         else:
             messages.info(request, 'Application not approved') 
             return redirect(home)
@@ -323,7 +323,13 @@ def apply_form(request):
         pass_id=''.join(random.choice(string.digits) for x in range(6))
         if applicants.objects.filter(pass_id=pass_id).exists():
             pass_id=''.join(random.choice(string.digits) for x in range(6))    
-        application=applicants(admission_no=admission_no,phone_number=mobilenumber,email=email_id,date_of_birth=d_o_b,student_name=student_name,gender=gender,father_name=fathername,mother_name=mothername,caste=caste,rd_number=rd_number,institute_type=institutiontype,institute_name=institutionname,institute_address=institution_addr_line1,inst_street_address1=institution_addr_line2,inst_city=institution_city,inst_state=institution_state,inst_postal_code=institution_postal,student_address=student_addr_line1,stud_street_address1=student_addr_line2,stud_city=student_city,stud_state=student_state,stud_postal_code=student_postal,course=course,year=year,semester=semester,adhar_number=adharnumber,college_fee_amt=fee_amount,from_stop=fromstop,to_stop=tostop,via_1=via1,terms_cond=agree,passport_size_image=passportsize,college_fees_image=collegefees,adhar_image=adharcard,study_certificate_image=studycertificate,previous_marks_image=previousYear,pass_id=pass_id,expire_date=expiredate)
+        application=applicants(admission_no=admission_no,phone_number=mobilenumber,email=email_id,date_of_birth=d_o_b,student_name=student_name,gender=gender,
+                                father_name=fathername,mother_name=mothername,caste=caste,rd_number=rd_number,institute_type=institutiontype,institute_name=institutionname,
+                                institute_address=institution_addr_line1,inst_street_address1=institution_addr_line2,inst_city=institution_city,inst_state=institution_state,
+                                inst_postal_code=institution_postal,student_address=student_addr_line1,stud_street_address1=student_addr_line2,stud_city=student_city,stud_state=student_state,
+                                stud_postal_code=student_postal,course=course,year=year,semester=semester,adhar_number=adharnumber,college_fee_amt=fee_amount,from_stop=fromstop,to_stop=tostop,
+                                via_1=via1,terms_cond=agree,passport_size_image=passportsize,college_fees_image=collegefees,adhar_image=adharcard,study_certificate_image=studycertificate,
+                                previous_marks_image=previousYear,pass_id=pass_id,expire_date=expiredate)
         obj=Account.objects.get(email=email_id)
         obj.pass_id=pass_id
         obj.save(update_fields=['pass_id'])
@@ -341,19 +347,24 @@ def renewal_fun(request):
         fee_amount=request.POST['fee_amount']
         from_stop=request.POST['from_stop']
         to_stop=request.POST['to_stop']
-        markscard=request.FILES['markscard']
-        study=request.FILES['study']
-        reciept=request.FILES['reciept']
-        obj=Account.objects.get(email=email)
+        previous = request.FILES['previousYear']
+        study_cert=request.FILES['reciept']
+        reciept=request.FILES['study']
+        obj=applicants.objects.get(email=email)
+        #applicants.objects.filter(email=email).update(study_certificate_image=study_cert)
+        obj.study_certificate_image=study_cert
+        obj.previous_marks_image=previous
+        obj.college_fees_image=reciept
+        obj.save(update_fields=['study_certificate_image'])
+        obj.save(update_fields=['previous_marks_image'])
+        obj.save(update_fields=['college_fees_image'])
         obj.semester=semester
         obj.college_fee_amt=fee_amount
         obj.year=year
         obj.from_stop=from_stop
         obj.to_stop=to_stop
-        obj.previous_marks_image=markscard
-        obj.study_certificate_image=study
-        obj.college_fees_image=reciept
         obj.save()
+        
         messages.info(request, 'renewal') 
         return redirect('home')
 

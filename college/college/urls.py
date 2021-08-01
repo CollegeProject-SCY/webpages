@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from re import template
+from django.conf.urls import handler500, url
+from django.views.static import serve
 from django.contrib import admin
 from django.urls import path,include
 from hello.admin import ac_site
@@ -23,6 +25,8 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('admin/', ac_site.urls),
     path('', include('hello.urls')),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
@@ -32,7 +36,10 @@ urlpatterns = [
 
 
 ]
+handler404='hello.views.handler404'
+handler500 = 'hello.views.handler500'
+
+
 if settings.DEBUG:
     urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404='hello.views.handle_not_found'

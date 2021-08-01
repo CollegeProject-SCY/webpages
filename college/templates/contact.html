@@ -20,11 +20,20 @@
     <img src="{% static 'images/shape.png' %}" class="square" alt="" />
       <div class="form">
         <div class="contact-info">
+          {% if username %}
+          <h3 class="title">Thank You {{username}}</h3>
+          <p class="text">
+            We will contact you as soon as possible.....
+            Have a good day..!
+          </p>
+           {% else %}
+ 
           <h3 class="title">Let's get in touch</h3>
+          
           <p class="text">
             Students can contact Call Center for all Enquiry / Grievances / refund claims on KSRTC services. Grievances can be submitted over telephone also.
           </p>
-     
+           {% endif %}
           <div class="info">
             <div class="information">
               <img src="{% static 'images/location.png' %}" class="icon" alt="" />
@@ -98,16 +107,7 @@
         </div>
       </div>
     </div>
-    {% if messages %}
-     {% for messages in messages %}
-     <div >
-       <script>
-         alert('{{ messages }}');
-     </script>
-     </div>
-     {% endfor %}
-     {% endif %} 
- 
+    
     <script src="{% static 'js/app.js' %}"></script>
   </body>
 </html>

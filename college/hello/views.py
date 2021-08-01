@@ -84,13 +84,12 @@ def log_in(request):
                     
                     return redirect('home')
                 else:
-                    messages.info(request, 'wrong password')
-                    print('wrong password by '+username)
-                    return HttpResponseRedirect('loged_in')
+                   
+                    return render(request,'index.html',{'pass':password})
+
           else:
-              messages.info(request, 'username not found')
-              print('username not found')
-              return HttpResponseRedirect('loged_in')
+             
+              return render(request,'index.html',{'user_val':username})
 
     return render(request,'home')
          
@@ -196,8 +195,12 @@ def payment(request):
         return redirect('/')
     
 
-def handle_not_found(request,exception):
-    return render(request, 'not-found.html')
+#def error_404(request,exception):
+ #   return render(request, 'error_404.html')
+def handler404(request, exception):
+    return render(request,'error_404.html')
+def handler500(request):
+    return render(request,'error_404.html')
 
 @login_required
 def log_out(request):
@@ -272,9 +275,9 @@ def contact_form(request):
          message=request.POST['messages']
          data = contact_list(username=username, email=email, phone=phone, messages=message)
          data.save()
-         messages.info(request, 'Thank you for contact us') 
-         return redirect('home')
-         
+         return render(request,'contact.html',{'username':username})
+
+
 @login_required
 @requires_csrf_token
 def apply_form(request):
@@ -363,6 +366,7 @@ def renewal_fun(request):
         obj.year=year
         obj.from_stop=from_stop
         obj.to_stop=to_stop
+        obj.approval=False
         obj.save()
         
         messages.info(request, 'renewal') 

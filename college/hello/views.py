@@ -62,8 +62,9 @@ def register(request):
     
     
     password1=request.POST['password']
-    user_obj =Account.objects.create(username=username, phone=phone, email=email, password=password1)
-    user_obj.set_password(password1)
+    encpass=password1+'zzz'
+    user_obj =Account.objects.create(username=username, phone=phone, email=email, password=encpass)
+    user_obj.set_password(encpass)
     user_obj.save()
     messages.info(request, 'Account Created Successfully :)')  
     print(' user created '+username) 
@@ -76,7 +77,8 @@ def log_in(request):
           password=request.POST['password']  
           if(Account.objects.filter(username=username).exists()):
                 user = Account.objects.get(username=username)
-                if user.check_password(password):
+                encpass=password+'zzz'
+                if user.check_password(encpass):
                     login(request, user)
                     user.last_login = timezone.now()
                     user.save(update_fields=['last_login'])
@@ -104,8 +106,7 @@ def apply(request):
     current=float(request.user.pass_id)
     if(current > 0):
         print(current)
-        messages.info(request, 'Your application already subbmitted') 
-        return redirect(home)
+        return render(request,'success.html',{'your_already_applied':current})
     else:
         return render(request,'apply.html')
 
@@ -116,17 +117,14 @@ def view(request):
 
 @login_required
 def renewal(request):
-    
     try:
         current=request.user.pass_id
         obj=applicants.objects.get(pass_id=current).approval
         if obj:    
-            
             expire_date=applicants.objects.get(pass_id=current).expire_date
             today=date.today()
             if(current == 0):
-                messages.info(request, 'your are not applied') 
-                return redirect(home)
+                return render(request,'success.html',{'your_not_applied':'your_not_applied'})
             else:
                 if(today < expire_date):
                     messages.info(request, 'Your pass validity not ended') 
@@ -135,17 +133,14 @@ def renewal(request):
                 else:
                     return render(request,'renewal.html')
         else:
-            messages.info(request, 'Application not approved') 
-            return redirect(home)
-            
+            return render(request,'success.html',{'application_not_approved':'application_not_approved'})      
     except applicants.DoesNotExist:
         obj=None
-        messages.info(request, 'Application not subbmitted') 
-        return redirect('/')
+        return render(request,'success.html',{'application_note_submitted':'application_note_submitted'})
+
 
 @login_required
 def generate(request):
-    
     try:
         current=request.user.pass_id
         expire_date=applicants.objects.get(pass_id=current).expire_date
@@ -155,23 +150,18 @@ def generate(request):
             #payment if loop
                 if(current == 0):
                     print(current)
-                    messages.info(request, 'your are not applied') 
-                    return redirect(home)
+                    return render(request,'success.html',{'your_not_applied':'your_not_applied'})
                 else:
                     if(today > expire_date):
-                        messages.info(request, 'Your pass is expired') 
+                        messages.info(request, 'Your pass validity expired') 
                         return redirect(home)
-
                     else:
                         return render(request,'generate.html')
         else:
-            messages.info(request, 'Application not approved') 
-            return redirect(home)
-            
+            return render(request,'success.html',{'application_not_approved':'application_not_approved'})
     except applicants.DoesNotExist:
         obj=None
-        messages.info(request, 'Application not subbmitted') 
-        return redirect('/')
+        return render(request,'success.html',{'application_note_submitted':'application_note_submitted'})
 
         
 

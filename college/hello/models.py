@@ -108,6 +108,7 @@ class applicants(models.Model):
     terms_cond=models.BooleanField(default=False)
     pass_id=models.CharField(max_length=6, unique=True, editable=False)
     approval=models.BooleanField(default=False)
+    mail_send=models.BooleanField(default=False)
     expire_date=models.DateField(null=True, blank=True)
     class Meta:
         db_table='application_db'

@@ -124,7 +124,7 @@ def renewal(request):
             expire_date=applicants.objects.get(pass_id=current).expire_date
             today=date.today()
             if(current == 0):
-                return render(request,'success.html',{'your_not_applied':'your_not_applied'})
+                return render(request,'success.html',{'your_not_applied_renw':'your_not_applied_renw'})
             else:
                 if(today < expire_date):
                     messages.info(request, 'Your pass validity not ended') 
@@ -133,10 +133,10 @@ def renewal(request):
                 else:
                     return render(request,'renewal.html')
         else:
-            return render(request,'success.html',{'application_not_approved':'application_not_approved'})      
+            return render(request,'success.html',{'application_not_approved_renw':'application_not_approved_renw'})      
     except applicants.DoesNotExist:
         obj=None
-        return render(request,'success.html',{'application_note_submitted':'application_note_submitted'})
+        return render(request,'success.html',{'application_not_submitted':'application_not_submitted'})
 
 
 @login_required
@@ -161,7 +161,7 @@ def generate(request):
             return render(request,'success.html',{'application_not_approved':'application_not_approved'})
     except applicants.DoesNotExist:
         obj=None
-        return render(request,'success.html',{'application_note_submitted':'application_note_submitted'})
+        return render(request,'success.html',{'application_not_submitted':'application_not_submitted'})
 
         
 

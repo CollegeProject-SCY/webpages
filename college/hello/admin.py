@@ -26,22 +26,15 @@ ac_site.register(Account,AccntAdmin)
 
 
 def email_pass(self, request, queryset):
+        mail_cont='Dear applicant,your application for bus pass has been Approved. Login and visit payment Section  to pay the fees and then generate your pass'
         for i in queryset:
             if i.mail_send==False:
-                send_mail('Subject here', 'fal.','yuvarajkharvi4111@gmail.com' , [i.email], fail_silently=False)
+                send_mail('Application Approved', mail_cont ,'yuvarajkharvi4111@gmail.com' , [i.email], fail_silently=False)
                 queryset.update(mail_send=True)         
 
         email_pass.short_description = "Send an email to approved applicants"
 
     
-#def email_pass(modeladmin,self, queryset):
-#    if self.mail_send==False:
-#        queryset.update(mail_send=True)
-#        print(self.mail_send)#    email_pass.short_description ='email_pass'   
-       # if obj.approval==True:
-           # if mail_send== False:
-        #        send_mail('subject', 'echeeeehl3', 'yuvarajkharvi4111@gmail.com' , ['yuvarajkharvi4111@gmail.com'], fail_silently=True)
-         #       obj.mail_send=True
 
 class Accntuser(admin.ModelAdmin):
     #user_pass=request.user.pass_id
@@ -52,7 +45,7 @@ class Accntuser(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
     
-    readonly_fields = ('passport_size_image','college_fees_image','adhar_image','study_certificate_image','previous_marks_image','terms_cond','mail_send',)
+    readonly_fields = ('passport_size_image','college_fees_image','adhar_image','study_certificate_image','previous_marks_image','terms_cond',)
    
 
 

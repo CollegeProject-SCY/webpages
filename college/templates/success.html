@@ -14,12 +14,24 @@
        
         <h1>Thank You!</h1>
     </div>
+    {% if your_not_applied_renw %}
+    <div class="_body">
+        <div class="_box">
+            
+            <h2>
+                <strong>Renewal page is not available now because of one of the following reasons:</strong> 
+            <p>
+                Sorry,You have not yet Applied. Please <a href="/apply">Apply</a> For BusPass
+            </p>
+        </div>
+    </div>
+    {% endif %}
     {% if your_not_applied %}
     <div class="_body">
         <div class="_box">
             
             <h2>
-                <strong>Your Not Application is Submitted</strong> 
+                <strong>Generate pass is not available now because of one of the following reasons:</strong> 
             <p>
                 Sorry,You have not yet Applied. Please <a href="/apply">Apply</a> For BusPass
             </p>
@@ -30,9 +42,10 @@
     <div class="_body">
         <div class="_box">
             <h2>
-                <strong>Your Application is Submitted</strong> 
+                <strong>Your have Already Applied</strong> 
             <p>
-                Thanks a bunch for filling that out. After approval , approved  status will be sent to your mail.
+             your application must be under verification, wait until you receive the mail regarding approval of application 
+
             </p>
            
         </div>
@@ -50,7 +63,21 @@
         </div>
     </div>
     {% endif %} 
-    {% if application_note_submitted %}
+    {% if application_not_approved_renw %}
+    <div class="_body">
+        <div class="_box">
+            <h2>
+                <strong>Renewal page is not available now because of one of the following reasons:</strong> 
+            <p>
+                If you have applied for pass, your application must be under verification, wait until you receive the mail regarding approval of application <br>
+
+                your application validity is not expired 
+            </p>
+           
+        </div>
+    </div>
+    {% endif %} 
+    {% if application_not_submitted %}
     <div class="_body">
         <div class="_box">
             <h2>

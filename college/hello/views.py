@@ -31,6 +31,7 @@ from django.http import HttpResponse
 
 
 
+
 # Create your views here.
 LogEntry.objects.all().delete()
 
@@ -80,10 +81,10 @@ def register(request):
   """
 def resend(request):
     email=request.session['email']
-    re_otp=''.join(random.choice(string.digits) for x in range(4))
-    request.session['re_otp']=re_otp
-    mail='Your sotp is  to visit  '+ re_otp +'Apply Procedures'
+    otp=''.join(random.choice(string.digits) for x in range(4))
+    mail='Your sotp is  to visit  '+ otp +'Apply Procedures'
     send_mail('OTP', mail ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    request.session['otp']=otp
     return render(request,'otp.html',{'email':email})
 
 
@@ -96,11 +97,12 @@ def verification(request,item_id=None):
         user_otp=first+second+third+fourth
         username=request.session['username']
         phone=request.session['phone']
-        re_otp=request.session['re_otp']
+        #re_otp=request.session['re_otp']
         encpass=request.session['encpass']
         email=request.session['email']
         otp=request.session['otp']
-        if (user_otp==otp or user_otp==re_otp):
+        
+        if (user_otp==otp):
             user_obj =Account.objects.create(username=username, phone=phone, email=email, password=encpass)
             user_obj.set_password(encpass)
             user_obj.save()
@@ -109,17 +111,18 @@ def verification(request,item_id=None):
             return redirect('loged_in')
         else:
             return render(request,'otp.html',{'wrong_otp':'wrong_otp'})
-    
+           
         
 
 def log_in(request):  
     if request.method =='POST':
           username=request.POST['username']
           password=request.POST['password']  
-          #email=Account.objects.get(username=username).email
-          if(Account.objects.filter(username=username).exists() or Account.objects.filter(username=email).exists()):
+          encpass=password+'zzz'
+          #email=Account.objects.get(email=username).email
+          if(Account.objects.filter(username=username).exists()):
                 user = Account.objects.get(username=username)
-                encpass=password+'zzz'
+                
                 if user.check_password(encpass):
                     login(request, user)
                     user.last_login = timezone.now()
@@ -130,7 +133,18 @@ def log_in(request):
                 else:
                    
                     return render(request,'index.html',{'pass':password})
-
+          elif(Account.objects.filter(email=username).exists()):
+                user = Account.objects.get(email=username)
+                if user.check_password(encpass):
+                    login(request, user)
+                    user.last_login = timezone.now()
+                    user.save(update_fields=['last_login'])
+                    print('User loged '+username)
+                    
+                    return redirect('home')
+                else:
+                   
+                    return render(request,'index.html',{'pass':password})
           else:
              
               return render(request,'index.html',{'user_val':username})

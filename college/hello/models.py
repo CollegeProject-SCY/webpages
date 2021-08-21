@@ -45,6 +45,7 @@ class Account(AbstractBaseUser):
     is_staff=models.BooleanField(default=False)
     is_superuser=models.BooleanField(default=False)
     phone=models.CharField(max_length=10)
+    otp=models.CharField(max_length=6,default=0 , editable=False)
     pass_id=models.CharField(max_length=6,default=0, editable=False)
 
     

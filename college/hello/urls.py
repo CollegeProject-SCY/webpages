@@ -27,7 +27,8 @@ urlpatterns = [
     path('generate/',views.generate, name="generate"),
     path('log_out',views.log_out, name="log_out"),
     path('renewal/renewal_fun',views.renewal_fun, name="renewal_fun"),
-
+    path('register/verification',views.verification, name="verification"),
+    
     
 
 ]

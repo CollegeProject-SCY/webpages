@@ -47,7 +47,9 @@ def register(request):
     if request.method =='POST':
          username=request.POST['username']
          email=request.POST['email']
-         
+         phone=request.POST['phone']
+         password1=request.POST['password']
+         encpass=password1+'zzz'
          
          #pass_id=uuid.uuid4()
          if(Account.objects.filter(username=username).exists()):
@@ -57,10 +59,16 @@ def register(request):
          elif(Account.objects.filter(email=email).exists()):
             messages.info(request, 'email exist :(') 
             return redirect('loged_in') 
-    
-    phone=request.POST['phone']
-    
-    
+    otp=''.join(random.choice(string.digits) for x in range(4))
+    send_mail('OTP', otp ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    request.session['username']=username
+    request.session['phone']=phone
+    request.session['encpass']=encpass
+    request.session['email']=email
+    request.session['otp']=otp
+    return render(request,'otp.html',{'email':email})
+
+    """phone=request.POST['phone']
     password1=request.POST['password']
     encpass=password1+'zzz'
     user_obj =Account.objects.create(username=username, phone=phone, email=email, password=encpass)
@@ -69,7 +77,32 @@ def register(request):
     messages.info(request, 'Account Created Successfully :)')  
     print(' user created '+username) 
     return redirect('loged_in')
-            
+
+  """
+
+def verification(request):
+    if request.method =='POST':
+        first=request.POST['first']
+        second=request.POST['second']
+        third=request.POST['third']
+        fourth=request.POST['fourth']
+        user_otp=first+second+third+fourth
+        username=request.session['username']
+        phone=request.session['phone']
+        encpass=request.session['encpass']
+        email=request.session['email']
+        otp=request.session['otp']
+        print(user_otp)
+        if user_otp==otp:
+            user_obj =Account.objects.create(username=username, phone=phone, email=email, password=encpass)
+            user_obj.set_password(encpass)
+            user_obj.save()
+            messages.info(request, 'Account Created Successfully :)')  
+            print(' user created '+username) 
+            return redirect('loged_in')
+        else:
+            return render(request,'otp.html',{'wrong_otp':'wrong_otp'})
+        
 
 def log_in(request):  
     if request.method =='POST':

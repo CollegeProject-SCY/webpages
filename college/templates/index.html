@@ -22,18 +22,12 @@
           <div class="form-wrapper align-center">
             <form class="form sign-up" action="{% url 'register' %}" method="POST" id="registerform">
               {% csrf_token %}
-              {% if username %}
               <div class="input-group">
                 <i class="bx bxs-user"></i>
                 <input type="text" name="username" placeholder="Username"  required onkeyup="this.setAttribute('value', this.value);" value=""  />
               </div>
-              <p class="text-warning">hello from index</p>
-              {% else %}
-              <div class="input-group">
-                <i class="bx bxs-user"></i>
-                <input type="text" name="username" placeholder="Username"  required onkeyup="this.setAttribute('value', this.value);" value=""  />
-              </div>
-              {% endif %}
+              
+              
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
                 <input type="email" placeholder="Email" name="email"  required onkeyup="this.setAttribute('value', this.value);" value=""  />
@@ -53,10 +47,10 @@
                 <i class="bx bxs-lock-alt"></i>
                 <input id="password_two" name="password1" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Confirm Password" required>  
               </div>
-              {% if log %}
+              <!--{% if log %}
                 <script>alert("email error");
                 </script>
-                {% endif %} 
+                {% endif %} -->
               <button class="pure-button pure-button-primary">Sign up</button>
               <p>
                 <span>Already have an Account?</span>

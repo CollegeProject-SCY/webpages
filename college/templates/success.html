@@ -77,6 +77,21 @@
         </div>
     </div>
     {% endif %} 
+    {% if application_not_submitted_renw %}
+    <div class="_body">
+        <div class="_box">
+            <h2>
+                <strong style="color: red;">Renewal Page is not available now because of one of the following reasons:</strong> 
+            <p style="color: red;">
+              
+                1.You have not yet applied for bus pass,in this case fill the application form in <a href="/apply">apply</a>  section.<br>
+                2. your application validity is not expired 
+                
+            </p>
+        </div>
+    </div>
+    
+    {% endif %} 
     {% if application_not_submitted %}
     <div class="_body">
         <div class="_box">

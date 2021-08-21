@@ -60,7 +60,8 @@ def register(request):
             messages.info(request, 'email exist :(') 
             return redirect('loged_in') 
     otp=''.join(random.choice(string.digits) for x in range(4))
-    send_mail('OTP', otp ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    mail='Your sotp is  to visit  '+ otp +'Apply Procedures'
+    send_mail('OTP', mail ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
     request.session['username']=username
     request.session['phone']=phone
     request.session['encpass']=encpass
@@ -79,8 +80,16 @@ def register(request):
     return redirect('loged_in')
 
   """
+def resend(request):
+    email=request.session['email']
+    re_otp=''.join(random.choice(string.digits) for x in range(4))
+    request.session['re_otp']=re_otp
+    mail='Your sotp is  to visit  '+ re_otp +'Apply Procedures'
+    send_mail('OTP', mail ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    return render(request,'otp.html',{'email':email})
 
-def verification(request):
+
+def verification(request,item_id=None):
     if request.method =='POST':
         first=request.POST['first']
         second=request.POST['second']
@@ -89,11 +98,11 @@ def verification(request):
         user_otp=first+second+third+fourth
         username=request.session['username']
         phone=request.session['phone']
+        re_otp=request.session['re_otp']
         encpass=request.session['encpass']
         email=request.session['email']
         otp=request.session['otp']
-        print(user_otp)
-        if user_otp==otp:
+        if (user_otp==otp or user_otp==re_otp):
             user_obj =Account.objects.create(username=username, phone=phone, email=email, password=encpass)
             user_obj.set_password(encpass)
             user_obj.save()
@@ -169,7 +178,7 @@ def renewal(request):
             return render(request,'success.html',{'application_not_approved_renw':'application_not_approved_renw'})      
     except applicants.DoesNotExist:
         obj=None
-        return render(request,'success.html',{'application_not_submitted':'application_not_submitted'})
+        return render(request,'success.html',{'application_not_submitted_renw':'application_not_submitted_renw'})
 
 
 @login_required

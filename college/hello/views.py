@@ -31,11 +31,9 @@ from django.http import HttpResponse
 
 
 
-
-
-
 # Create your views here.
 LogEntry.objects.all().delete()
+
 def loged_in(request):
     return render(request,'index.html')
 
@@ -111,13 +109,15 @@ def verification(request,item_id=None):
             return redirect('loged_in')
         else:
             return render(request,'otp.html',{'wrong_otp':'wrong_otp'})
+    
         
 
 def log_in(request):  
     if request.method =='POST':
           username=request.POST['username']
           password=request.POST['password']  
-          if(Account.objects.filter(username=username).exists()):
+          #email=Account.objects.get(username=username).email
+          if(Account.objects.filter(username=username).exists() or Account.objects.filter(username=email).exists()):
                 user = Account.objects.get(username=username)
                 encpass=password+'zzz'
                 if user.check_password(encpass):

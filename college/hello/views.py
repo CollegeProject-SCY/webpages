@@ -32,6 +32,7 @@ from django.http import HttpResponse
 
 
 
+
 # Create your views here.
 LogEntry.objects.all().delete()
 
@@ -51,6 +52,7 @@ def register(request):
          encpass=password1+'zzz'
          
          #pass_id=uuid.uuid4()
+         
          if(Account.objects.filter(username=username).exists()):
             messages.info(request, 'username exist :(') 
             return redirect('loged_in') 
@@ -60,7 +62,7 @@ def register(request):
             return redirect('loged_in') 
     otp=''.join(random.choice(string.digits) for x in range(4))
     mail='Your sotp is  to visit  '+ otp +'Apply Procedures'
-    send_mail('OTP', mail ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    send_mail('OTP', mail ,'roadwayexpressscy@gmail.com' , [email], fail_silently=False)
     request.session['username']=username
     request.session['phone']=phone
     request.session['encpass']=encpass
@@ -83,7 +85,7 @@ def resend(request):
     email=request.session['email']
     otp=''.join(random.choice(string.digits) for x in range(4))
     mail='Your sotp is  to visit  '+ otp +'Apply Procedures'
-    send_mail('OTP', mail ,'yuvarajkharvi4111@gmail.com' , [email], fail_silently=False)
+    send_mail('OTP', mail ,'roadwayexpressscy@gmail.com' , [email], fail_silently=False)
     request.session['otp']=otp
     return render(request,'otp.html',{'email':email})
 
@@ -275,7 +277,7 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'yuvarajkharvi4111@gmail.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'roadwayexpressscy@gmail.com' , [user.email], fail_silently=False)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")

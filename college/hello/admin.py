@@ -29,7 +29,7 @@ def email_pass(self, request, queryset):
         mail_cont='Dear applicant,your application for bus pass has been Approved. Login and visit payment Section  to pay the fees and then generate your pass'
         for i in queryset:
             if i.mail_send==False:
-                send_mail('Application Approved', mail_cont ,'yuvarajkharvi4111@gmail.com' , [i.email], fail_silently=False)
+                send_mail('Application Approved', mail_cont ,'roadwayexpressscy@gmail.com' , [i.email], fail_silently=False)
                 queryset.update(mail_send=True)         
 
         email_pass.short_description = "Send an email to approved applicants"

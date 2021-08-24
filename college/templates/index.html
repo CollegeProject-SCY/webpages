@@ -40,13 +40,14 @@
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input id="password" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
-               
+                <input id="password" name="password" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? '1.At least 1 Uppercase 2.At least 1 Lowercase 3.At least 1 Number 4.Min 8 chars and Max 12 chars' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
+                <i class='bx bx-hide' id="togglePassword"></i>
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input id="password_two" name="password1" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Confirm Password" required>  
+                <input id="password_two" name="password1" type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? '1.At least 1 Uppercase 2.At least 1 Lowercase 3.At least 1 Number 4.Min 8 chars and Max 12 chars' : '');" placeholder="Confirm Password" required>  
               </div>
+              
               <!--{% if log %}
                 <script>alert("email error");
                 </script>
@@ -93,8 +94,39 @@
                 </div>
                 <div class="input-group">
                   <i class="bx bxs-lock-alt"></i>
-                  <input type="password" name="password" placeholder="Password"required onkeyup="this.setAttribute('value', this.value);" value="" />
+                  <input id="password1" type="password" name="password" placeholder="Password"required onkeyup="this.setAttribute('value', this.value);" value="" />
+                  <i class='bx bx-hide' id="togglePassword1"></i>
                 </div>
+                <script>
+                  const togglePassword=document.querySelector('#togglePassword');
+                  const password=document.querySelector('#password');
+                  const password_two=document.querySelector('#password_two');
+                  togglePassword.addEventListener('click', function(e){
+                  const type=password.getAttribute('type')==='password' ? 'text' : 'password';
+                  password.setAttribute('type',type); 
+                  const type1=password_two.getAttribute('type')==='password' ? 'text' : 'password';
+                  password_two.setAttribute('type',type1);  
+                  this.classList.toggle('bx-show');
+  
+                  });
+                  const togglePassword1=document.querySelector('#togglePassword1');
+                  const password1=document.querySelector('#password1');
+                  togglePassword1.addEventListener('click', function(e){
+                  const type=password1.getAttribute('type')==='password' ? 'text' : 'password';
+                  password1.setAttribute('type',type);
+                  this.classList.toggle('bx-show'); 
+                  });
+                </script>
+                <style>
+                  form #togglePassword{
+                     margin-left: 350px;
+                     cursor: pointer;
+                  }
+                  form #togglePassword1{
+                     margin-left: 350px;
+                     cursor: pointer;
+                  }
+                </style>
                 {% if pass %}
                 <p style="color:red;font-family:'Times New Roman', Times, serif;">Password is not Matching</p>
                 {% endif %} 

@@ -1260,7 +1260,7 @@ li[data-type="control_image"] img {
         <div id="cid_14" class="form-input-wide jf-required">
           <div data-wrapper-react="true">
             <span class="form-sub-label-container" style="vertical-align:top">
-              <input type="date" class="form-textbox validate[required,]" name="d_o_b" id="lite_mode_14" value="" required="" data-format="yyyy-mm-dd" data-seperator="-" placeholder="yyyy-mm-dd" autoComplete="off" aria-labelledby="label_14" />
+              <input type="date" max="2003-05-01" oninvalid="this.setCustomValidity('Age must be greater than 16 years!')" oninput="this.setCustomValidity('')" class="form-textbox validate[required,]" name="d_o_b" id="lite_mode_14" value="" required="" data-format="yyyy-mm-dd" data-seperator="-" placeholder="yyyy-mm-dd" autoComplete="off" aria-labelledby="label_14" />
               <label class="form-sub-label" for="lite_mode_14" id="sublabel_14_litemode" style="min-height:13px" aria-hidden="false">  </label>
             </span>
           </div>
@@ -1340,7 +1340,7 @@ li[data-type="control_image"] img {
           </span>
         </label>
         <div id="cid_20" class="form-input-wide jf-required">
-          <input type="text" id="input_20" name="rd_number" data-type="input-textbox" class="form-textbox validate[required, AlphaNumeric]" size="20" value="" maxLength="12" data-component="textbox" aria-labelledby="label_20" required="" />
+          <input type="text"  pattern="[R][D](?=.*\d){16}" oninvalid="this.setCustomValidity('RD Number begins with RD and should contain 14 digits!')" oninput="this.setCustomValidity('')" id="input_20" name="rd_number" data-type="input-textbox" class="form-textbox validate[required, AlphaNumeric]" size="20" value="" maxLength="12" data-component="textbox" aria-labelledby="label_20" required="" />
         </div>
       </li>
       <li class="form-line jf-required" data-type="control_dropdown" id="id_22">
@@ -1514,29 +1514,7 @@ li[data-type="control_image"] img {
           </select>
         </div>
       </li>
-      <li class="form-line jf-required" data-type="control_dropdown" id="id_29">
-        <label class="form-label form-label-top form-label-auto" id="label_29" for="input_29">
-          Semester
-          <span class="form-required">
-            *
-          </span>
-        </label>
-        <div id="cid_29" class="form-input-wide jf-required">
-          <select class="form-dropdown validate[required]" id="input_29" name="semester" style="width:150px" data-component="dropdown" required="">
-            <option value="">  </option>
-            <option value="I"> I </option>
-            <option value="II"> II </option>
-            <option value="III"> III </option>
-            <option value="IV"> IV </option>
-            <option value="V"> V </option>
-            <option value="VI"> VI </option>
-            <option value="VII"> VII </option>
-            <option value="VIII"> VIII </option>
-            <option value="IX"> IX </option>
-            <option value="X"> X </option>
-          </select>
-        </div>
-      </li>
+      
       <li class="form-line jf-required" data-type="control_textbox" id="id_30">
         <label class="form-label form-label-top form-label-auto" id="label_30" for="input_30">
           Mobile Number
@@ -1570,7 +1548,7 @@ li[data-type="control_image"] img {
           </span>
         </label>
         <div id="cid_33" class="form-input-wide jf-required">
-          <input type="text" id="input_33" name="adharnumber" data-type="input-textbox" class="form-textbox validate[required, Numeric]" size="20" value="" maxLength="12" data-component="textbox" aria-labelledby="label_33" required="" />
+          <input type="text" id="input_33" name="adharnumber" pattern="^\d{12}$" oninvalid="this.setCustomValidity('Adhar number should contain 12 digits!')" oninput="this.setCustomValidity('')" data-type="input-textbox" class="form-textbox validate[required, Numeric]" value="" data-component="textbox" aria-labelledby="label_33"  required="" />
         </div>
       </li>
       <li class="form-line jf-required" data-type="control_textbox" id="id_34">
@@ -1595,34 +1573,43 @@ li[data-type="control_image"] img {
           </div>
         </div>
       </li>
-      <li class="form-line jf-required" data-type="control_textbox" id="id_37">
-        <label class="form-label form-label-top form-label-auto" id="label_37" for="input_37">
+      <li class="form-line jf-required" data-type="control_dropdown" id="id_28">
+        <label class="form-label form-label-top form-label-auto" id="label_28" for="input_28">
           From Stop
           <span class="form-required">
             *
           </span>
         </label>
-        <div id="cid_37" class="form-input-wide jf-required">
-          <input type="text" id="input_37" name="fromstop" data-type="input-textbox" class="form-textbox validate[required]" size="20" value="" data-component="textbox" aria-labelledby="label_37" required="" />
+        <div id="cid_28" class="form-input-wide jf-required">
+          <select class="form-dropdown validate[required]" id="input_28" name="fromstop" style="width:150px" data-component="dropdown" required="">
+            <option value="">  </option>
+            <option value="Kundapura">Kundapura </option>
+            <option value="Byndoor"> Byndoor </option>
+            <option value="Bhatkal"> Bhatkal </option>
+            <option value="Siddapura">Siddapura </option>
+           
+          </select>
         </div>
       </li>
-      <li class="form-line jf-required" data-type="control_textbox" id="id_38">
-        <label class="form-label form-label-top form-label-auto" id="label_38" for="input_38">
+      <li class="form-line jf-required" data-type="control_dropdown" id="id_28">
+        <label class="form-label form-label-top form-label-auto" id="label_28" for="input_28">
           To Stop
           <span class="form-required">
             *
           </span>
         </label>
-        <div id="cid_38" class="form-input-wide jf-required">
-          <input type="text" id="input_38" name="tostop" data-type="input-textbox" class="form-textbox validate[required]" size="20" value="" data-component="textbox" aria-labelledby="label_38" required="" />
+        <div id="cid_28" class="form-input-wide jf-required">
+          <select class="form-dropdown validate[required]" id="input_28" name="tostop" style="width:150px" data-component="dropdown" required="">
+            <option value="">  </option>     
+            <option value="Bhatkal"> Bhatkal </option>
+            <option value=" Byndoor"> Byndoor </option>
+            <option value=" Siddapura"> Siddapura </option>
+             <option value="Kundapura"> Kundapura </option>
+           
+          </select>
         </div>
       </li>
-      <li class="form-line" data-type="control_textbox" id="id_39">
-        <label class="form-label form-label-top form-label-auto" id="label_39" for="input_39"> via 1 </label>
-        <div id="cid_39" class="form-input-wide">
-          <input type="text" id="input_39" name="via1" data-type="input-textbox" class="form-textbox" size="20" value="" data-component="textbox" aria-labelledby="label_39" />
-        </div>
-      </li>
+     
       <li class="form-line jf-required" data-type="control_fileupload" id="id_42">
         <label class="form-label form-label-top form-label-auto" id="label_42" for="input_42">
           Passport Size Photograph
@@ -1636,7 +1623,8 @@ li[data-type="control_image"] img {
               <div class="qq-uploader-buttonText-value">
                 Browse Files
               </div>
-              <input type="file" id="input_42" name="passportsize" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
+              <input type="file" onchange="validateSize(this)" id="input_42 "  max-file-size="1024" name="passportsize" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-limit="1" data-component="fileupload" required="" />
+              
               <label class="form-sub-label" for="input_42" style="min-height:13px" aria-hidden="false"> upload upto 2MB </label>
             </span>
             <span style="display:none" class="cancelText">
@@ -1648,6 +1636,7 @@ li[data-type="control_image"] img {
           </div>
         </div>
       </li>
+     
       <li class="form-line jf-required" data-type="control_fileupload" id="id_43">
         <label class="form-label form-label-top form-label-auto" id="label_43" for="input_43">
           College Fees Reciept
@@ -1661,7 +1650,7 @@ li[data-type="control_image"] img {
               <div class="qq-uploader-buttonText-value">
                 Browse Files
               </div>
-              <input type="file" id="input_43" name="collegefees" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
+              <input type="file"  onchange="validateSize(this)" id="input_43" name="collegefees" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
               <label class="form-sub-label" for="input_43" style="min-height:13px" aria-hidden="false"> upload upto 2MB </label>
             </span>
             <span style="display:none" class="cancelText">
@@ -1673,6 +1662,7 @@ li[data-type="control_image"] img {
           </div>
         </div>
       </li>
+      
       <li class="form-line jf-required" data-type="control_fileupload" id="id_44">
         <label class="form-label form-label-top form-label-auto" id="label_44" for="input_44">
           Adhar Card Copy
@@ -1686,7 +1676,7 @@ li[data-type="control_image"] img {
               <div class="qq-uploader-buttonText-value">
                 Browse Files
               </div>
-              <input type="file" id="input_44" name="adharcard" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
+              <input type="file"  onchange="validateSize(this)" id="input_44" name="adharcard" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
               <label class="form-sub-label" for="input_44" style="min-height:13px" aria-hidden="false"> upload upto 2MB </label>
             </span>
             <span style="display:none" class="cancelText">
@@ -1711,7 +1701,7 @@ li[data-type="control_image"] img {
               <div class="qq-uploader-buttonText-value">
                 Browse Files
               </div>
-              <input type="file" id="input_45" name="studycertificate" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
+              <input type="file"  onchange="validateSize(this)" id="input_45" name="studycertificate" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
               <label class="form-sub-label" for="input_45" style="min-height:13px" aria-hidden="false"> upload upto 2MB </label>
             </span>
             <span style="display:none" class="cancelText">
@@ -1736,7 +1726,7 @@ li[data-type="control_image"] img {
               <div class="qq-uploader-buttonText-value">
                 Browse Files
               </div>
-              <input type="file" id="input_46" name="previousYear" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
+              <input type="file"  onchange="validateSize(this)" id="input_46" name="previousYear" multiple="" class="form-submit-button-metal_brushed form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png"  data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="" />
               <label class="form-sub-label" for="input_46" style="min-height:13px" aria-hidden="false"> upload upto 2MB </label>
             </span>
             <span style="display:none" class="cancelText">
@@ -1769,7 +1759,7 @@ li[data-type="control_image"] img {
       <li class="form-line" data-type="control_button" id="id_51">
         <div id="cid_51" class="form-input-wide">
           <div style="text-align:center" data-align="center" class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField">
-            <button id="input_51" type="submit" class="form-submit-button form-submit-button-wood submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
+            <button id="input_51" type="submit" onClick="return validate()" class="form-submit-button form-submit-button-wood submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
               Submit
             </button>
             <span>
@@ -1790,8 +1780,18 @@ li[data-type="control_image"] img {
       </div>
       {% endfor %}
       {% endif %} 
-  
-   
+     
     </form>
+    <script>
+    function validateSize(input) {
+      const fileSize = input.files[0].size / 1024 / 1024; // in MiB
+      if (fileSize > 2) {
+        alert('File size exceeds 2 MB');
+        // $(file).val(''); //for clearing with Jquery
+      } else {
+        // Proceed further
+      }
+    }
+  </script>
   </body>
 </html>

@@ -14,13 +14,13 @@ class accAdmin(admin.AdminSite):
 
 class AccntAdmin(admin.ModelAdmin):
     list_display=('email','username','phone','is_active','pass_id')
-
+    list_filter = ('date_joined', )
     def has_add_permission(self, request):
         return False
 
     def has_change_permission(self, request,obj=None):
        return False
-
+    
 ac_site=accAdmin(name='Administration')
 ac_site.register(Account,AccntAdmin)
 

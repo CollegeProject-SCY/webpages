@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-ohoqv5bl3*sig8r*iypc16f(%bf$n^#_@mz!1_iqhq#&5sfm)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,12 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'hello',
-    
+    'hello.apps.HelloConfig',
     
     
 ]
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -126,6 +124,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+PAYTM_MERCHANT_ID = 'Ztanbx42738781439498'
+PAYTM_SECRET_KEY = 'HERn7FFw%QXSzw@v'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

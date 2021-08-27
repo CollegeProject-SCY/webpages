@@ -484,29 +484,7 @@
 
             </label>
         </div>
-        <div class="form-row">
-            <label>
-                <span>
-
-
-                    SEMESTER</span>
-
-                <select id="course" name="semester">
-                    <option selected="" value="Default">(Please select your Semester)</option>
-
-                    <option value="I"> I </option>
-                    <option value="II"> II </option>
-                    <option value="III"> III </option>
-                    <option value="IV"> IV </option>
-                    <option value="V"> V </option>
-                    <option value="VI"> VI </option>
-                    <option value="VII"> VII </option>
-                    <option value="VIII"> VIII </option>
-                    <option value="IX"> IX </option>
-                    <option value="X"> X </option>
-                </select>
-            </label>
-        </div>
+        
         <div class="form-row">
             <label>
                 <span>
@@ -558,36 +536,54 @@
         <div class="form-row">
             <label>
                 <span>From Stop</span>
+                <select id="cour" name="from_stop">
+                    <option selected="" value="Default">(Please select your source)</option>
+                    <option value="Kundapura">Kundapura</option>
+                    <option value="Bhatkal"> Bhatkal </option>
+                    <option value="Byndoor"> Byndoor </option>
+                    <option value="Siddapura"> Siddapura</option>
+                   
 
-                <input type="text" id="from" name="from_stop" required="required" size="30">
+                </select>
+
+
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>To Stop</span>
+                <select id="cour" name="to_stop">
+                    <option selected="" value="Default">(Please select your destination)</option>
+                    <option value="Kundapura">Kundapura</option>
+                    <option value="Bhatkal"> Bhatkal </option>
+                    <option value="Byndoor"> Byndoor </option>
+                    <option value="Siddapura"> Siddapura</option>
+                   
 
-                <input type="text" id="to" name="to_stop" required="required" size="30">
+                </select>
+
+
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>Study Certificate</span>
 
-                <input type="file" id="study_certificate" name="study"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
+                <input type="file" id="study_certificate"  onchange="validateSize(this)" name="study"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>Previous Year Marks Card</span>
 
-                <input type="file" id="p_marks" name="previousYear"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
+                <input type="file" id="p_marks" name="previousYear"  onchange="validateSize(this)" data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>College Fees Reciept</span>
 
-                <input type="file" id="college_receip" name="reciept"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
+                <input type="file" id="college_receip" onchange="validateSize(this)" name="reciept"  data-imagevalidate="yes" data-file-accept="jpg, jpeg, png" data-file-maxsize="2048" data-file-minsize="0" data-file-limit="1" data-component="fileupload" required="">
             </label>
         </div>
 
@@ -604,13 +600,24 @@
 
 
         <div class="form-row">
-            <button type="submit">Submit Form</button>
+            <button type="submit" onClick="return validate()">Submit Form</button>
         </div>
 
 
     </form>
 
 </div>
+<script>
+    function validateSize(input) {
+      const fileSize = input.files[0].size / 1024 / 1024; // in MiB
+      if (fileSize > 2) {
+        alert('File size exceeds 2 MB');
+        // $(file).val(''); //for clearing with Jquery
+      } else {
+        // Proceed further
+      }
+    }
+  </script>
 
 </body>
 

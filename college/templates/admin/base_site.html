@@ -13,6 +13,8 @@
 {% block extrastyle %}
 
     <link rel="stylesheet" type="text/css" href="{% static "admin/admin_color.css" %}"/>
+    <link rel = "icon" href="{% static 'images/header_logo.jpg' %}" type= "image/x-icon">
+
 
 {% endblock %}
 
@@ -22,14 +24,10 @@
     
 {% block branding %}
 
-    <h1 id="site-name">{% trans "ROADWAY EXPRESS | ADMIN" %}</h1>
+    <h1 id="site-name"><img alt="logo" height="50" width="50" src="{% static  'images/logo.png' %}"> {% trans "ROADWAY EXPRESS | ADMIN" %}</h1>
 
 {% endblock %}
 
  
 
 {% block nav-global %}{% endblock %}
-
- 
-
- 

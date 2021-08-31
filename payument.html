@@ -1,178 +1,71 @@
 
-<!DOCTYPE html>
+def initiate_payment(request):
+    if request.method == "GET":
+        return render(request, 'pay.html')
+    try:
+        username = request.user.username
+        #password = request.POST['password']
+        amount = 100
+        if(Account.objects.filter(username=username).exists()):
+                user = Account.objects.get(username=username)
+                if user is None:
+                    raise ValueError
+        #user = authenticate(request, username=username, password=password)
+        #if user is None:
+         #   raise ValueError
+       # auth_login(request=request, user=user)
+    except:
+        return render(request, 'pay.html', context={'error': 'Wrong Accound Details or amount'})
+    #transaction = Transaction.objects.create(amount=amount)
+    #transaction.save()
+    merchant_key = settings.PAYTM_SECRET_KEY
 
-<head>
+    params = (
+        ('MID', settings.PAYTM_MERCHANT_ID),
+        ('ORDER_ID', str('1256')),
+        ('CUST_ID', str('hello@gmail.com')),
+        ('TXN_AMOUNT', str(amount)),
+        ('CHANNEL_ID', settings.PAYTM_CHANNEL_ID),
+        ('WEBSITE', settings.PAYTM_WEBSITE),
+        # ('EMAIL', request.user.email),
+        # ('MOBILE_N0', '9911223388'),
+        ('INDUSTRY_TYPE_ID', settings.PAYTM_INDUSTRY_TYPE_ID),
+        ('CALLBACK_URL', 'http://127.0.0.1:8000/callback/'),
+        # ('PAYMENT_MODE_ONLY', 'NO'),
+    )
 
- <!-- CSS only -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    paytm_params = dict(params)
+    checksum = generate_checksum(paytm_params, merchant_key)
 
-    <link rel = "icon" href="../static/images/header_logo.jpg" type= "image/x-icon">
-   <!-- CSS only -->
-
-    <title>Payment page</title>
-</head>
-<body>
-   
-
-<div class="modal clearfix">
-    <div class="modal-product">
-        <div class="product">
-               <div class="productSlides fade">
-                    <img  alt="logo" height="350" width="350" src="../static/images/logo.png">
-
-            </div>    
-        </div>
-
-     <div class="round-shape"></div>
-    </div>
-    <div class="modal-info">
-        <div class="info">
-            <h2>Payment Information</h2><br><br>
-            <form action="#">
-                <ul class="form-list">
-                    <li class="form-list-row">
-                        <div class="user">
-                            <label for="#"><b style="margin-left: 19px; font-size: 22px;"><i class="fas fa-user" id="user_icon">
-
-                            </i>   Name:</b>
-                            </label><br>
-                            
-                            
-                        </div>
-                    </li>
-                    <li class="form-list-row">
-                        <div class="number">
-                            <label for="#"><b  style="margin-left: 15px;  font-size: 22px;"><i class="fa fa-id-card" aria-hidden="true"></i>   Payment ID :</b></label><br>
-                            
-                    </li>
-                    <li class="form-list-row clearfix">
-                        <div class="date">
-                            <label for="#" ><b style="margin-left: 15px; font-size: 22px;"><i class="fas fa-map-marker-alt"></i>
-                                  From Stop :</b></label><br>
-                            
-                        </div><br>
-                        <div class="cvc">
-                            <label for="#"><b style="margin-left: 15px; font-size: 22px; "><i class="fas fa-map-marker-alt"></i>   To Stop :</b></label><br>
-                            
-                        </div>
-                    </li>
-                    <li class="form-list-row">
-                        <div class="number">
-                            <label for="#"><b style="margin-left: 19px; font-size: 22px"> <i class="fas fa-rupee-sign"></i>   Amount :</b></label>
-                            
-                    </li>
-                </ul>
-                
-          <div class="mt-4"> <button class="btn btn-danger px-4 validate">Pay</button> </div>
-        </div>
-       
-            </form>
-        </div>
-    </div>
-</div>
-
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+    #transaction.checksum = checksum
+    #transaction.save()
+    #delete from hello_transaction where id>10;
+    paytm_params['CHECKSUMHASH'] = checksum
+    print('SENT: ', checksum)
+    return render(request, 'redirect.html', context=paytm_params)
 
 
-    * {
-        margin: 0;
-        padding: 0;
-        outline: none;
-        text-decoration: none;
-        list-style: none;
-        box-sizing: border-box;
-    }
-    
-.btn{
-    margin-top: 55px;
-    margin-left: 380px;
-    margin-bottom: -25px;
-    box-shadow: 0px 5px 20px 0px #d2dae3;
+from django.views.decorators.csrf import csrf_exempt
 
-}
+@csrf_exempt
+def callback(request):
+    if request.method == 'POST':
+        received_data = dict(request.POST)
+        paytm_params = {}
+        paytm_checksum = received_data['CHECKSUMHASH'][0]
+        for key, value in received_data.items():
+            if key == 'CHECKSUMHASH':
+                paytm_checksum = value[0]
+            else:
+                paytm_params[key] = str(value[0])
+        # Verify checksum
+        is_valid_checksum = verify_checksum(paytm_params, settings.PAYTM_SECRET_KEY, str(paytm_checksum))
+        if is_valid_checksum:
+            received_data['message'] = "Checksum Matched"
+        else:
+            received_data['message'] = "Checksum Mismatched"
+            return render(request, 'callback.html', context=received_data)
+        return render(request, 'callback.html', context=received_data)
 
-.validate {
-    border-radius: 20px;
-    height: 40px;
-    background-color: #f33f3f;
-    border: 1px solid #f33f3f;
-    width: 140px;
-   
-}
-    
-    
-    body {
-        font-family: poppins, arial, sans-serif;
-        background-color: whitesmoke;
-    }
-    .form-list-row{
-        margin-bottom: 20px;
-
-    }
-   
-
-    .modal {
-        width: 96%;
-        max-width: 1000px;
-        height: 550px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 3px;
-        overflow: hidden;
-        background-color: white;
-        box-shadow: 5px 5px 30px rgba(0, 0, 0, .3);
-    }
-    .modal-product {
-        width: 40%;
-        height: 100%;
-        float: left;
-        position: relative;
-    }
-    .product {
-        width: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-    }
-
-    .round-shape {
-        width: 125%;
-        height: 150%;
-        position: absolute;
-        top: 50%;
-        left: 38%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background-color:#e01df2c7;
-        box-shadow: 0 0 25px rgba(0, 0, 0, .3);
-        z-index: 1;
-    }
-    
-    .modal-info {
-        width: 60%;
-        height: 100%;
-        float: right;
-        position: relative;
-    }
-    .info {
-        width: 90%;
-        height: 85%;
-        position: absolute;
-        top: 50%;
-        left: 5%;
-        transform: translate(0%, -50%);
-    }
-    h2 {
-        font-size: 2.25rem;
-        margin-left: 1rem;
-    }
-   
-                   
-</style>
 
     

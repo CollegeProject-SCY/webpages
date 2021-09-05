@@ -69,7 +69,7 @@
               </li>
               
               <li class ="nav-item">
-                <a class="nav-link" href="payment">Payment</a>
+                <a class="nav-link" href="pay">Payment</a>
               </li>
               
               <li class ="nav-item">
@@ -130,6 +130,7 @@
     
     <!-- Banner Ends Here -->
     <!---->
+    
     <div class="latest-products">
       <div class="container">
         <div class="row">
@@ -139,49 +140,22 @@
              <!--<a href="about.html">view all products <i class="fa fa-angle-right"></i></a> -->
             </div>
           </div>
+          {% for depo in depo_list %}
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'images/batkal.jpeg' %}" draggable="false" height="200" alt=""></a>
+              <a href="#"><img src="{{depo.bus_photo.url}}" draggable="false" height="200" alt=""></a>
               <div class="down-content">
-                <a href="#"><h4>Bhatkal</h4></a>
+                <a href="#"><h4>{{depo.city}}</h4></a>
                 <h6></h6>
                 <p></p>
                
-                <span>Reviews (0)</span>
+                <span>{{depo.address|safe}}</span>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="{% static 'images/kundapura.jpeg' %}" height="200" alt=""></a>
-              <div class="down-content">
-                <a href="#"><h4>Kundapura</h4></a>
-                <h6></h6>
-                <p></p>
-               <!-- <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>-->
-                <span>Reviews (0)</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="{% static 'images/byndoor.jpeg' %}" height="200" alt=""></a>
-              <div class="down-content">
-                <a href="#"><h4>Byndoor</h4></a>
-                <h6></h6>
-                <p></p>
-                
-                <span>Reviews (0)</span>
-              </div>
-            </div>
-          </div>
-         
+          
+          
+          {% endfor %}
     <div class="best-features">
       <div class="container">
         <div class="row">

@@ -45,8 +45,8 @@ class Account(AbstractBaseUser):
     is_staff=models.BooleanField(default=False)
     is_superuser=models.BooleanField(default=False)
     phone=models.CharField(max_length=10)
-    pass_id=models.CharField(max_length=6,default=0, editable=False)
-
+    pass_id=models.CharField(max_length=20,default=0, editable=False)
+   
     
 
     USERNAME_FIELD='email'
@@ -64,7 +64,7 @@ class Account(AbstractBaseUser):
         return True
 
     class Meta:
-        db_table='login_accounts'
+        db_table='login_account'
         verbose_name='Account List'
 
 
@@ -94,22 +94,24 @@ class applicants(models.Model):
     stud_postal_code=models.CharField(max_length=7)
     course=models.CharField(max_length=20)
     year=models.CharField(max_length=10)
-    semester=models.CharField(max_length=20)
     adhar_number=models.CharField(max_length=12)
     college_fee_amt=models.CharField(max_length=10)
     from_stop=models.CharField(max_length=50)
     to_stop=models.CharField(max_length=50)
-    via_1=models.CharField(max_length=50)
+    #via_1=models.CharField(max_length=50)
     passport_size_image=models.ImageField(upload_to='photos/')
     college_fees_image=models.ImageField(upload_to='photos/')
     adhar_image=models.ImageField(upload_to='photos/')
     study_certificate_image=models.ImageField(upload_to='photos/')
     previous_marks_image=models.ImageField(upload_to='photos/')
     terms_cond=models.BooleanField(default=False)
-    pass_id=models.CharField(max_length=6, unique=True, editable=False)
+    pass_id=models.CharField(max_length=20, unique=True, editable=False)
     approval=models.BooleanField(default=False)
     mail_send=models.BooleanField(default=False)
-    expire_date=models.DateField(null=True, blank=True)
+    #payment_id=models.CharField(max_length=100, null=True, blank=True)
+    bus_amount = models.IntegerField(null=True,default=0,blank=True)
+    receipt_pdf=models.FileField(upload_to='receipt/',null=True,blank=True)
+    user_pass=models.FileField(upload_to='passes/',null=True,blank=True)
     class Meta:
         db_table='application_db'
         verbose_name='Application List'
@@ -143,17 +145,29 @@ class pass_rate(models.Model):
         db_table = 'pass_rate_table'
         verbose_name = 'Pass amounts list'
 
-from django.contrib.auth import get_user_model    
-User = get_user_model()
-class Transaction(models.Model):
-    made_by = models.ForeignKey(User, related_name='transactions', 
-                                on_delete=models.CASCADE)
-    made_on = models.DateTimeField(auto_now_add=True)
-    amount = models.IntegerField()
-    order_id = models.CharField(unique=True, max_length=100, null=True, blank=True)
-    checksum = models.CharField(max_length=1000, null=True, blank=True)
+class depos(models.Model):
+    city=models.CharField(max_length=255)
+    bus_photo=models.ImageField(upload_to='bus_photos/')
+    address=models.CharField(max_length=255)
 
-    def save(self, *args, **kwargs):
-        if self.order_id is None and self.made_on and self.id:
-            self.order_id = self.made_on.strftime('PAY2ME%Y%m%dODR') + str(self.id)
-        return super().save(*args, **kwargs)
+    class Meta:
+        db_table = 'Bus_Depos'
+        verbose_name = 'New Bus Depo'
+
+from django.contrib.auth import get_user_model    
+#User = get_user_model() 
+class Transaction(models.Model):
+   # made_by = models.ForeignKey(User, related_name='transactions', 
+    #                            on_delete=models.CASCADE)
+    #username=models.CharField(max_length=30)
+    made_on = models.DateTimeField(auto_now_add=True)
+    amount = models.CharField(max_length=30)
+    order_id = models.CharField(unique=True, max_length=100, null=True, blank=True)
+    #checksum = models.CharField(max_length=1000, null=True, blank=True)
+    username=models.CharField(unique=True, max_length=100, null=True, blank=True)
+    status=models.CharField(max_length=1000)
+    expire_date=models.DateField(null=True, blank=True)
+    #def save(self, *args, **kwargs):
+    #    if self.order_id is None and self.made_on and self.id:
+       #     self.order_id = self.made_on.strftime('RDW%Y%m%dODR') + str(self.id)
+        #return super().save(*args, **kwargs)

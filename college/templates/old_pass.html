@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=1, user-scalable=yes" />
+    <title>Your_Pass</title>
+    <link rel="icon" href="{% static 'images/header_logo.jpg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/generate_pass.css' %}" />
+    <script src="{%  static 'js/generate_pass.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center mt-50 mb-50">
+        <div class="row align-items-start">
+            <div class="text-right"> <button type="button" class="btn btn-primary"
+                onclick="javascript:window.location='/'"><b><i class="fa fa-paper-plane-o mr-1"></i></b>
+                Home</button> 
+            </div>
+            <div class="col-md-9 text-right mb-3">
+                <button class="btn btn-primary" id="download"> download pdf</button>
+            </div>
+            
+            <div class="col-md-12half">
+                <div class="card" id="pass" >
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <h6 class="card-title text-primary"><b>Card No:{{data.pass_id}}</b></h6>
+                        <h6 class="col"><img src="{% static 'images/roadwayexpress.png' %}" height="50px" width="300px" alt=""></h6>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                            <tr>
+                                <h5 style="text-align:center;padding-top: 10px;font-family:Times New Roman;"><b>Karnataka State Road Transport
+                                    Corporation</b></h5>
+                            </tr>
+                            </tr>
+                            <hr>
+                        </thead>
+                    </table>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-4 pull-left">
+                                    <img src="{{data.passport_size_image.url}}" class="irounded float-left" alt="..." height="230" width="230">                            
+                                </div>
+                            </div>
+                        
+                            <div class="d-flex flex-wrap break-word wmin-md-400">
+                                <ul class="list list-unstyled mb-0 text-center">
+                                    <li>
+                                        <h5 class="my-2"><b><i>Student Name:</i></b></h5>
+                                    </li>
+                                    <li><h6><b>Address:</b></h6></li>
+                                    <li><h6><b>College:</b></h6></li>
+                                    <li><h6><b>From Place:</b></h6></li>
+                                    <li><h6><b>To Place:</b></h6></li>
+                                    <li><h6><b>Expire Date:</b></h6></li>
+                                    <li><h6><b>Gender:</b></h6></li>
+                                    <li><h6><b>Phone:</b></h6></li>
+                                </ul>
+                                <ul class="list list-unstyled text-center ">
+                                    <li>
+                                        <h4 class="font-weight-semibold my-2" id="s_name"><b><i>{{data.student_name}}</i></b> </h4>
+                                    </li>
+                                    <li id="address">{{data.student_address}}</li>
+                                    <li id="college"><h6>{{data.institute_name}}</h6></li>
+                                    <li id="from_place"><h6>{{data.from_stop}}</h6></li>
+                                    <li id="to_place"><h6>{{data.to_stop}}</h6></li>
+                                    <li id="expire_date"><h6>{{expire}}</h6></li>
+                                    <li id="gender"><h6>{{data.gender}}</h6></li>
+                                    <li id="phone"><h6>{{data.phone_number}}</h6></li>
+                                </ul>
+                            </div>
+                              
+                        </div>      
+                    </div>
+                   
+                    <div class="bg-transparent header-elements-inline">
+                        <h6 style="font-family:Times New Roman;">Date:<span id="time"></h6></span>
+                        <script>
+                            var today = new Date();
+                            var n = today.toDateString().replace(/^\S+\s/,'');
+                            document.getElementById('time').innerHTML=n;
+                        </script>
+                    </div>
+
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

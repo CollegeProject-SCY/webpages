@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'hello.apps.HelloConfig',
-    
+    'hello',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -85,9 +84,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'buspass',
         'USER': 'root',
-        'PASSWORD': 'yuvaraj',
+        'PASSWORD': 'yuvarajkharvi',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        'OPTIONS': { "init_command": "SET foreign_key_checks = 0;", } 
     }
 }
 # Password validation
@@ -160,3 +160,6 @@ EMAIL_HOST_USER='roadwayexpressscy@gmail.com'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 EMAIL_HOST_PASSWORD="413541114130"
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 10

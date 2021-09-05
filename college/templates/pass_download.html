@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=1, user-scalable=yes" />
+    <title>ID Card</title>
+    <style>
+        *{
+        margin: 00px;
+        padding: 00px;
+        box-sizing: content-box;
+            }
+
+            .container {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #e6ebe0;
+                flex-direction: row;
+                flex-flow: wrap;
+
+            }
+
+            .font{
+                height: 600px;
+                width: 400px;
+                position: relative;
+                border-radius: 10px;
+            }
+
+            .top{
+                height: 30%;
+                width: 100%;
+                background-color: #470531;
+                position: relative;
+                z-index: 5;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+
+            .bottom{
+                height: 70%;
+                width: 100%;
+                background-color: white;
+                position: absolute;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            .top .image{
+                height: 200px;
+                width: 200px;
+                background-color: #e6ebe0;
+                border-radius: 10px;
+                position: absolute;
+                top:60px;
+                left: 100px;
+            }
+            .bottom p{
+                position: relative;
+                top: 100px;
+                text-align: center;
+                text-transform: capitalize;
+                font-weight: bold;
+                font-size: 20px;
+                text-emphasis: spacing;
+            }
+            .bottom .desi{
+                font-size:12px;
+                color: grey;
+                font-weight: normal;
+            }
+            .bottom .no{
+                position: relative;
+                top: 120px;
+                left: 40px;
+                font-size: 20px;
+                font-weight: normal;
+                
+            }
+            .bottom .dynamic{
+                position: relative;
+                bottom: 115px;
+                left: 160px;
+                font-size: 21px;
+                font-weight: normal;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                
+            }
+            .bottom .dynamic li{
+                padding-bottom: 5px;
+                word-wrap:wrap;
+                
+            }
+            .bottom .no li{
+                padding-bottom: 6px;
+                word-wrap:wrap;
+                
+            }
+            .Details {
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-size: 25px;
+            }
+
+
+            .details-info{
+                color: white;
+                text-align: left;
+                padding: 5px;
+                line-height: 20px;
+                font-size: 16px;
+                text-align: center;
+                margin-top: 20px;
+                line-height: 22px;
+            }
+
+            .top img{
+                position:absolute;
+                top: 0px;
+                bottom: 250px;
+                left: 100px;
+                height: 70px;
+                width: 200px;
+               
+            }
+            .small_logo img{
+                position: relative;
+                top: 13px;
+                bottom: 15px;
+                left: 50px;
+                height: 50px;
+                width: 50px;
+               
+            }
+            
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                position: relative;
+                top: 100px;
+                left: 680px;
+            }
+            .button1 {
+                background-color: white; 
+                color: black; 
+                border: 2px solid #be07be;
+            }
+            .button1:hover {
+                background-color: #be07be;
+                color: white;
+            }
+            .button2 {
+                background-color: white; 
+                color: black; 
+                border: 2px solid #be07be;
+            }
+
+            .button2:hover {
+                background-color: #be07be;
+                color: white;
+            }
+            .padding{
+                padding-right: 20px;
+            }
+
+            @media screen and (max-width:400px)
+            {
+                .container{
+                    height: 130vh;
+                }
+                .container .front{
+                    margin-top: 50px;
+                }
+            }
+            @media screen and (max-width:600px)
+            {
+                .container{
+                    height: 130vh;
+                }
+                .container .front{
+                    margin-top: 50px;
+                }
+
+            }
+    </style>
+   
+    
+</head>
+<body>
+        <div class="container">
+            <div class="padding">
+                <div class="font">
+                    
+
+                    <div class="top">
+                        <div class="small_logo" >
+
+                            <img  src="static/images/small_logo.png">
+                        </div>
+                       
+                           
+                       <img src="{{data.passport_size_image.url}}" class="image"  alt="No Photo"> 
+                       <img class="logo"  src="static/images/roadwayexpress2.png">
+
+                    </div>
+                    <div class="bottom">
+                        <p>{{data.student_name}}</p>
+                        <p class="desi">Student</p>
+                        <div class="no">
+                            <ul style="list-style-type:none;" >
+                               
+                                <li class="">Bus Pass:</li>
+                                <li class="">Address:</li>
+                                <li class="">College:</li>
+                                <li class="">From Place:</li>
+                                <li class="">To Place:</li>
+                                <li class="">Expire Date:</li>
+                                <li class="">Gender:</li>
+                                <li class="">Phone:</li>
+                            </ul>
+                        </div>
+                        <div class="dynamic">
+                            <ul style="list-style-type:none;" >
+                               
+                                <li class="">{{data.pass_id}}</li>
+                                <li class="">{{data.student_address}}</li>
+                                <li class="">{{data.institute_name}}</li>
+                                <li class="">{{data.from_stop}}</li>
+                                <li class="">{{data.to_stop}}</li>
+                                <li class="">{{data.expire_date}}</li>
+                                <li class="">{{data.gender}}</li>
+                                <li class="">{{data.phone_number}}</li>
+                            </ul>
+                        </div>
+                       
+                    </div>
+                    
+                   
+                </div>
+            </div>
+            
+        </div>
+</body>
+</html>

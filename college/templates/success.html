@@ -12,7 +12,7 @@
 <div class="thankyou-page">
     <div class="_header">
        
-        <h1>Thank You!</h1>
+        <h1>Thank you</h1>
     </div>
     {% if your_not_applied_renw %}
     <div class="_body">
@@ -38,9 +38,22 @@
         </div>
     </div>
     {% endif %}
+    {% if your_not_applied_pay %}
+    <div class="_body">
+        <div class="_box">
+            
+            <h2>
+                <strong> Payment page is not available now because of one of the following reasons:</strong> 
+            <p>
+                Sorry,You have not yet Applied. Please <a href="/apply">Apply</a> For BusPass
+            </p>
+        </div>
+    </div>
+    {% endif %}
     {% if your_already_applied %}
     <div class="_body">
         <div class="_box">
+            
             <h2>
                 <strong>Your have Already Applied</strong> 
             <p>
@@ -69,10 +82,22 @@
             <h2>
                 <strong>Renewal page is not available now because of one of the following reasons:</strong> 
             <p>
+                1.If you have applied for pass, your application must be under verification, wait until you receive the mail regarding approval of application <br>
+                2.your application validity is not expired 
+            </p>
+           
+        </div>
+    </div>
+    {% endif %} 
+    {% if application_not_approved_pay %}
+    <div class="_body">
+        <div class="_box">
+            <h2>
+                <strong>Payment page is not available now because of one of the following reasons:</strong> 
+            <p>
                 If you have applied for pass, your application must be under verification, wait until you receive the mail regarding approval of application <br>
 
-                your application validity is not expired 
-            </p>
+               </p>
            
         </div>
     </div>
@@ -92,6 +117,18 @@
     </div>
     
     {% endif %} 
+    {% if Payment_pending %}
+        <div class="_body">
+            <div class="_box">
+                <h2>
+                    <strong style="color: red;">Payment page is not available now because of one of the following reasons:</strong> 
+                <p style="color: red;">
+                    1.payment for bus pass not yet done.please make payment by clicking <a href="/pay">payment</a>.<br>
+                </p>
+            </div>
+        </div>
+
+    {% endif %} 
     {% if application_not_submitted %}
     <div class="_body">
         <div class="_box">
@@ -100,6 +137,19 @@
             <p style="color: red;">
                 1.You have not yet applied for bus pass,in this case fill the application form in <a href="/apply">apply</a>  section.<br>
                 2.If you have applied for pass, your application must be under verification, wait until you receive the mail regarding approval of application          
+            </p>
+        </div>
+    </div>
+    
+    {% endif %} 
+    
+    {% if under_renew %}
+    <div class="_body">
+        <div class="_box">
+            <h2>
+                <strong style="color: red;">Already You are applied for Application Renewal!</strong> 
+            <p style="color: red;">
+                      
             </p>
         </div>
     </div>

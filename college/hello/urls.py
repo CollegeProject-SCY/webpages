@@ -8,7 +8,9 @@ from . import views
 
 
 urlpatterns = [
+    
     path('',views.home,name="home"),
+     
     path('register',views.register, name="register"),
     path('loged_in/',views.loged_in, name="loged_in"),
     path('log_in',views.log_in, name="log_in"),
@@ -18,10 +20,10 @@ urlpatterns = [
     path('apply/apply_form',views.apply_form, name="apply_form"),
     path('password_reset/', views.password_reset_request, name="password_reset"),
     path('apply/',views.apply, name="apply"),
-    path('view/',views.encrypt, name="view"),
+    path('view/',views.view, name="view"),
     path('about_us/',views.about_us, name="about_us"),
     path('contact_us/',views.contact_us, name="contact_us"),
-    path('payment/',views.payment, name="payment"),
+    #path('payment/',views.payment, name="payment"),
     path('renewal/',views.renewal, name="renewal"),
     path('generate/',views.generate, name="generate"),
     path('log_out',views.log_out, name="log_out"),
@@ -31,10 +33,13 @@ urlpatterns = [
     
     path('pay/', views.initiate_payment, name='pay'),
     path('callback/', views.callback, name='callback'),
-
-
-    
+    path('callback/download_pass/',views.download_pass,name='download_pass'),
+    path('pay/download_pass/',views.download_pass,name='download_pass'),
+    path('generate/download',views.download, name="pass_val"),
+    #path('catch/', views.catch, name='catch'),
+       
 ]
+
 
 
 
